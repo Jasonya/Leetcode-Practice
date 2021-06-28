@@ -1,36 +1,29 @@
-class Solution(object):
-    def permute(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[List[int]]
-        """
-        # build-in function permutation
-        # return list(permutations(nums))
-        
-        # dfs
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        # iteration 
         res = []
-        self.dfs(nums, res, [])
+        def dfs(nums, i, cur_list):
+            if i == len(nums):
+                res.append(cur_list.copy())
+            else:
+                for j in range(i, len(nums)):
+                    nums[i], nums[j] = nums[j], nums[i]
+                    cur_list.append(nums[i])
+                    dfs(nums, i+1, cur_list)
+                    cur_list.pop()
+                    nums[i], nums[j] = nums[j], nums[i]
+                    
+        dfs(nums, 0, [])
         return res
-    
-    def dfs(self, nums, res, cur):
-        if not nums:
-            res.append(cur)
-       
-        for i in range(len(nums)):
-            self.dfs(nums[:i] + nums[i+1:], res, cur+[nums[i]])
-
-        # visit
-#         visited = [False] * len(nums)
-#         res = []
         
-#         def dfs(cur):
-#             if len(cur) == len(nums):
-#                 res.append(cur)
-#             else:
-#                 for i in range(len(nums)):
-#                     if not visited[i]:
-#                         visited[i] = True
-#                         dfs(cur+[nums[i]])
-#                         visited[i] = False
-#         dfs([])
-#         return res
+        # recursion
+        # res = []
+        # def dfs(nums, res, cur):
+        #     if not nums:
+        #         res.append(cur)
+        #     else:
+        #         for i in range(len(nums)):
+        #             dfs(nums[:i]+nums[i+1:], res, cur+[nums[i]])
+        # dfs(nums, res, [])
+        # return res
+    
