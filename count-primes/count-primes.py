@@ -1,27 +1,13 @@
-class Solution(object):
-    def countPrimes(self, n):
-        """
-        :type n: int
-        :rtype: int
-        """
-        if n < 3:
+class Solution:
+    def countPrimes(self, n: int) -> int:
+        if n<3:
             return 0
-        primes = [True] * n
-        primes[0] = primes[1] = False
-        for i in range(2, int(n**0.5)+1):
-            if primes[i]:
-                primes[i*i:n:i] = [False] * len(primes[i*i:n:i])
-        return sum(primes)
-    
-        #filter
-#         import math
-#         count = 0
-#         def judge_prime(w):
-#             sq_w = int(math.sqrt(w))
-#             for i in range(2,sq_w)":
-#                 if x%i ==0
-#                     return 0
-#             return 1
+        prime = [True] * n
         
-#         for x in range(2,n):
-#             count = count + judge_prime(x)
+        # 0 and 1 is not prime
+        prime[0] = prime[1] = False
+        
+        for i in range(2, int(n**0.5)+1):
+            if prime[i]:
+                prime[i*i:n:i] = [False] * len(prime[i*i:n:i])
+        return sum(prime)
