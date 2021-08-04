@@ -1,19 +1,11 @@
 # Write your MySQL query statement below
+select seller_id from(
+select seller_id,
+    rank() over(order by sum(price) desc) as rnk 
+    from Sales
+    group by 1) a
+where rnk = 1
 
-SELECT seller_id FROM(
-    SELECT seller_id,
-        rank() over(order by sum(price) DESC) as rnk
-    FROM Sales
-    GROUP BY 1) a
-WHERE rnk = 1
+
+
     
-
-
-
-# select project_id
-# from (
-# select project_id,
-# rank() over(order by count(distinct employee_id) desc) as rnk
-# from Project
-# group by 1) a
-# where rnk = 1
