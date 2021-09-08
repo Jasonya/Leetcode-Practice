@@ -1,7 +1,9 @@
-# Write your MySQL query statement below
-select product_id,
-    max(if(store = 'store1', price, null)) as "store1",
-    max(if(store = 'store2', price, null)) as "store2",
-    max(if(store = 'store3', price, null)) as "store3"
-from Products
-group by product_id
+/* Write your T-SQL query statement below */
+select *
+from(
+    select product_id, store, price from Products
+)T1
+PIVOT
+(max(price) for store in ( [store1], [store2], [store3])
+
+)T2
