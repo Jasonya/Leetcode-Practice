@@ -20,16 +20,27 @@ class Solution:
         # return ans
         
         # iteration
-        stack, ans = [], []
-        while True:
-            while root:
-                # find the left subtree
-                stack.append(root)
-                root = root.left
-            if not stack:
-                return ans
-            root = stack.pop()
-            ans.append(root.val)
-            root = root.right
+        # stack, ans = [], []
+        # while True:
+        #     while root:
+        #         # find the left subtree
+        #         stack.append(root)
+        #         root = root.left
+        #     if not stack:
+        #         return ans
+        #     root = stack.pop()
+        #     ans.append(root.val)
+        #     root = root.right
  
+        ans = []
+        def inorder(n):
+            if n is None:
+                return None
+            if n.left is not None:
+                inorder(n.left)
+            ans.append(n.val)
+            if n.right is not None:
+                inorder(n.right)
+        inorder(root)
+        return ans
             
