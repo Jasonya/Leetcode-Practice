@@ -1,8 +1,10 @@
 # Write your MySQL query statement below
-SELECT player_id, device_id FROM(
-    SELECT player_id ,device_id , rank() over (PARTITION BY player_id 
-                                                ORDER BY event_date) rnk
-    FROM Activity) A
-WHERE rnk = 1
- 
+select player_id, device_id
+from(
+    select player_id, device_id, 
+        dense_rank() over(partition by player_id order by event_date asc) as rnk
+    from Activity
+)sub
+where rnk=1
 
+    
