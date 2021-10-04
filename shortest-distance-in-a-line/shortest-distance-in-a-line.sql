@@ -1,4 +1,4 @@
 # Write your MySQL query statement below
-SELECT min(abs(a.x-b.x)) AS "shortest"
-FROM point a JOIN point b
-WHERE a.x != b.x
+select min(abs(a.x-b.x)) as shortest
+from point a, point b
+where a.x != b.x
