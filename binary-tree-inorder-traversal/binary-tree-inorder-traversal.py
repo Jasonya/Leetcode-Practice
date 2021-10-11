@@ -32,15 +32,21 @@ class Solution:
         #     ans.append(root.val)
         #     root = root.right
  
+
+        # recursion
         ans = []
-        def inorder(n):
-            if n is None:
+        def inorder(root):
+            if not root:
                 return None
-            if n.left is not None:
-                inorder(n.left)
-            ans.append(n.val)
-            if n.right is not None:
-                inorder(n.right)
+            if root.left:
+                inorder(root.left)
+            ans.append(root.val)
+
+            if root.right:
+                inorder(root.right)
         inorder(root)
         return ans
+ 
             
+            
+        
