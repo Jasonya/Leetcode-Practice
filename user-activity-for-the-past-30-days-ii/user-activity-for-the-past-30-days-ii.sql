@@ -1,16 +1,15 @@
 # Write your MySQL query statement below
-select round(ifnull(avg(ses), 0), 2) as average_sessions_per_user from(
-select count(distinct session_id) as ses
-from Activity
-where activity_date between '2019-06-28' and '2019-07-27'
-group by user_id) a
+select round(ifnull(sum(cnt)/count(user_id), 0),2) as average_sessions_per_user
+from(
+    select user_id, count(distinct session_id) as cnt
+    from Activity
+    where datediff('2019-07-27', activity_date) < 30
+    group by 1)sub
 
 
 
 
 
-# select round(ifnull(avg(ses), 0), 2) as 'average_sessions_per_user' from(
-#     select count(distinct session_id) as 'ses'
-#     from Activity
-#     where activity_date between '2019-06-28' and '2019-07-27'
-#     group by user_id) a
+
+
+
