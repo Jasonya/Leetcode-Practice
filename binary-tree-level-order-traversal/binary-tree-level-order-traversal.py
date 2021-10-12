@@ -26,22 +26,40 @@ class Solution:
         # return res
         
         # recursion
-        levels = []
-        if not root:
-            return levels
-        def helper(node, level):
-            # initial the list
-            if len(levels) == level:
-                levels.append([])
-            levels[level].append(node.val)
+#         levels = []
+#         if not root:
+#             return levels
+#         def helper(node, level):
+#             # initial the list
+#             if len(levels) == level:
+#                 levels.append([])
+#             levels[level].append(node.val)
             
-            # process
-            if node.left:
-                helper(node.left, level+1)
-            if node.right:
-                helper(node.right, level+1)
-        helper(root, 0)
-        return levels
+#             # process
+#             if node.left:
+#                 helper(node.left, level+1)
+#             if node.right:
+#                 helper(node.right, level+1)
+#         helper(root, 0)
+#         return levels
+    
+        # iteration
+        if not root:
+            return []
+        ans = []
+        queue = [root]
+        while len(queue):
+            cnt = len(queue)
+            temp = []
+            for _ in range(cnt):
+                node = queue.pop(0)
+                temp.append(node.val)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            ans.append(temp)
+        return ans
                 
             
         
