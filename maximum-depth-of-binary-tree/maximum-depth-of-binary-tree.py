@@ -5,14 +5,7 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def maxDepth(self, root: TreeNode) -> int:
-        if root is None:
-            # base case
-            return 0
-
-        return 1+ max(self.maxDepth(root.left), self.maxDepth(root.right))
-    
-    
+    def maxDepth(self, root: TreeNode) -> int:    
 #         stack = []
 #         if root is not None:
 #             stack.append((1, root))
@@ -27,3 +20,7 @@ class Solution:
 #                 stack.append((current_depth + 1, root.right))
         
 #         return depth
+
+        if root is None:
+            return 0
+        return 1+max(self.maxDepth(root.left), self.maxDepth(root.right))
