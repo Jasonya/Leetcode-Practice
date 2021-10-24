@@ -1,6 +1,6 @@
 # Write your MySQL query statement below
-select distinct c.title
-from Content c left join TVProgram t
-on c.content_id = t.content_id
-where c.Kids_content = 'Y' and c.content_type = 'Movies' 
-and date_format(t.program_date, '%Y-%m') = '2020-06'
+select distinct title
+from TVProgram t left join Content c
+on t.content_id = c.content_id
+where date_format(program_date, '%Y-%m') = '2020-06'
+and Kids_content = 'Y' and content_type ='Movies'
