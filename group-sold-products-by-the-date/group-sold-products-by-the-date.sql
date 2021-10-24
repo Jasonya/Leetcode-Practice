@@ -5,3 +5,5 @@ select sell_date,
 from Activities
 group by 1
 order by 1
+
+
