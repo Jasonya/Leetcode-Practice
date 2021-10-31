@@ -13,7 +13,7 @@ class Solution:
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
-            
+        
         # reverse the second part of linked list
         prev, cur = None, slow
         while cur:
@@ -21,7 +21,7 @@ class Solution:
             cur.next = prev
             prev, cur = cur, temp
             
-        # merge two list
+        # merge the two list
         first, second = head, prev
         while second.next:
             temp = first.next
@@ -31,5 +31,5 @@ class Solution:
             temp = second.next
             second.next = first
             second = temp
-        
+        return first
         
