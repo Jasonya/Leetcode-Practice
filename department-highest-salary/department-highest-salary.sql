@@ -1,10 +1,10 @@
 # Write your MySQL query statement below
-select d.Name as department,
-    e.Name as Employee,
-    e.Salary 
-from Employee e join Department d
-on e.DepartmentId = d.Id
-where e.Salary = (select max(Salary)
-                 from Employee es
-                 where es.DepartmentId = e.DepartmentId
-                 group by es.DepartmentId)
+select d.name as Department,
+    sub.name as Employee,
+    salary as Salary
+from(
+select name, salary, departmentID,
+    rank() over(partition by departmentID order by salary desc) as rnk
+from Employee ) sub left join Department d
+on sub.departmentID = d.id
+where rnk=1
