@@ -1,12 +1,9 @@
 # Write your MySQL query statement below
-select session_id 
+select session_id
 from Playback
 where session_id not in(
     select p.session_id
     from Playback p left join Ads a
     on p.customer_id = a.customer_id
-    where a.timestamp between p.start_time and p.end_time)
-
-
-
+    where timestamp between start_time and end_time)
 
