@@ -1,11 +1,16 @@
 # Write your MySQL query statement below
-select sum(TIV_2016) as TIV_2016 from(
-select PID, TIV_2015, TIV_2016, CONCAT(LAT,",",LON) as LOCATION
-    from insurance) tbl
-WHERE
-TIV_2015 NOT IN
-(SELECT TIV_2015 FROM insurance GROUP BY 1 HAVING COUNT(*)=1)
-AND
-LOCATION NOT IN
-(SELECT CONCAT(LAT,",",LON) as location FROM insurance GROUP BY 1 HAVING COUNT(*)>1)
+with cte as(
+    select tiv_2015, tiv_2016, concat(lat, ',', lon) as geolocation
+    from Insurance
+)
+
+select round(sum(tiv_2016),2) as tiv_2016
+from cte
+where geolocation not in (select geolocation from cte group by 1 having count(*) > 1)
+and tiv_2015 not in (select tiv_2015 from cte group by 1 having count(*)=1)
+
+
+
+
+
 
