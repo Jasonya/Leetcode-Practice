@@ -1,7 +1,7 @@
 # Write your MySQL query statement below
-select Name
+select name
 from Vote v left join Candidate c
-on v.CandidateId = c.id
-group by v.CandidateId
-order by count(*) desc
+on c.id = v.candidateId
+group by candidateId
+order by count(candidateId) desc
 limit 1
