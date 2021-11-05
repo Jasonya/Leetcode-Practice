@@ -1,8 +1,8 @@
 # Write your MySQL query statement below
-select distinct t.user_id from(
-select a.user_id,
-timestampdiff(second, b.time_stamp, a.time_stamp) as t from confirmations a
-join confirmations b 
-where a.user_id = b.user_id and a.time_stamp > b.time_stamp) t
-where t.t <= 86400
-order by 1
+select distinct (user_id) from(
+    select c1.user_id,
+        timestampdiff(second, c1.time_stamp, c2.time_stamp) as time_diff
+    from Confirmations c1 join Confirmations c2
+    on c1.user_id = c2.user_id and c2.time_stamp>c1.time_stamp) b
+where time_diff <= 86400
+
